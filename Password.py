@@ -24,7 +24,7 @@ class User:
 
         return False 
 
-class credentials:
+class Credential:
     credentials_list = []
 
     def __init__ (self, account_name, user_name, password):
@@ -33,7 +33,7 @@ class credentials:
         self.password = password
 
     def save_credentials(self):
-        credentials.credentials_list.append(self)
+        Credential.credentials_list.append(self)
 
     @classmethod
     def find_account_name(cls, account_name):
@@ -57,7 +57,7 @@ class credentials:
         return cls.credentials_list
 
     def delete_credentials(self):
-        credentials.credentials_list.remove(self)                                      
+        Credential.credentials_list.remove(self)                                      
 
 
      

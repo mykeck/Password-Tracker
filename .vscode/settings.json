@@ -1,0 +1,10 @@
+{
+    "launch": {
+
+        "configurations": [],
+        "compounds": []
+    },
+    "python.linting.pylintPath": "/user/pyperclip/btn/python",
+    // "python.linting.pylamaEnabled":true,
+    // "python.linting.enabled": true
+}
