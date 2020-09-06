@@ -1,5 +1,6 @@
 import unittest
 from Password import User
+from Password import credentials
 
 class TestUser(unittest.TestCase):
     def setUp(self):
@@ -35,6 +36,42 @@ class TestUser(unittest.TestCase):
         user_exists = User.user_exists('sally', '*999')
 
         self.assertTrue(user_exists) 
+
+
+class Testcredentials(unittest.TestCase):
+    '''
+    a class that defines test cases for the credential behaviours.
+    Args:
+        unittest.TestCase: TestCase class that helps in creating test cases
+    '''
+    def setUp(self):
+        self.new_credentials = credentials("twitter", "mykeck", "key33")
+
+    def tearDown(self):
+        credentials.credentials_list = []
+
+    # def test_init(self):
+    #     self.assertSetEqual(self.new_credentials.account_name,"twitter")
+    #     self.assertSetEqual(self.new_credentials.user_name, "mykeck")
+    #     self.assertSetEqual(self.new_credentials.password, "key33")
+
+    def test_save_credentials(self): 
+        self.new_credentials.save_credentials()
+
+        self.assertEqual(len(credentials.credentials_list), 1)
+
+    def test_save_multiple_account(self): 
+        self.new_credentials.save_credentials() 
+
+        credential1 = credentials("facebook", "swat", "j876")
+        credential1.save_credentials()
+
+        self.assertEqual(len(credentials.credentials_list),2)
+         
+
+         
+
+                
 
         
         
