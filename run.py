@@ -26,7 +26,20 @@ def create_credentials(account_name, user_name, password):
     '''
     a function to create new credentials
     '''
-    new_credentials = credential           
+    new_credentials = Credential(account_name, user_name, password) 
+    return new_credentials
+
+def save_credentials(credentials):
+    '''
+    function to save credentials
+    '''
+    return Credential.save_credentials(credentials)
+
+def find_credentials(account_name):
+    return Credential.find_by_account_name(account_name)
+
+    
+                      
 
 
 if __name__ == "__main__":
