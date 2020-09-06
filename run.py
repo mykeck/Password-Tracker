@@ -38,7 +38,13 @@ def save_credentials(credentials):
 def find_credentials(account_name):
     return Credential.find_by_account_name(account_name)
 
-    
+def view_credentials():
+    return Credential.view_credentials()
+
+def delete_credentials():
+    return Credential.delete_credential()
+
+def generate_password(pass_len):            
                       
 
 
