@@ -67,6 +67,17 @@ class Testcredentials(unittest.TestCase):
         credential1.save_credentials()
 
         self.assertEqual(len(credentials.credentials_list),2)
+
+    def test_find_account_name(self): 
+        self.new_credentials.save_credentials()
+
+        credential2 = credentials("Instagram", "badman", "#2020")
+        credential2.save_credentials()
+
+        found_credentials = credentials.find_account_name("Instagram")
+
+        self.assertEqual(found_credentials.password, credential2.password)
+
          
 
          
