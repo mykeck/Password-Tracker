@@ -47,7 +47,17 @@ class credentials:
         '''
         for credentials in cls.credentials_list:
             if credentials.account_name == account_name:
-                return credentials                       
+                return credentials 
+
+    @classmethod
+    def view_credentials(cls):
+        '''
+        method that returns the credentials lists
+        '''
+        return cls.credentials_list
+
+    def delete_credentials(self):
+        credentials.credentials_list.remove(self)                                      
 
 
      

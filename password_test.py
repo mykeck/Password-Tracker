@@ -50,10 +50,10 @@ class Testcredentials(unittest.TestCase):
     def tearDown(self):
         credentials.credentials_list = []
 
-    # def test_init(self):
-    #     self.assertSetEqual(self.new_credentials.account_name,"twitter")
-    #     self.assertSetEqual(self.new_credentials.user_name, "mykeck")
-    #     self.assertSetEqual(self.new_credentials.password, "key33")
+    def test_init(self):
+        self.assertSetEqual(self.new_credentials.account_name,"twitter")
+        self.assertSetEqual(self.new_credentials.user_name, "mykeck")
+        self.assertSetEqual(self.new_credentials.password, "key33")
 
     def test_save_credentials(self): 
         self.new_credentials.save_credentials()
@@ -78,6 +78,10 @@ class Testcredentials(unittest.TestCase):
 
         self.assertEqual(found_credentials.password, credential2.password)
 
+    def test_view_credentials(self):
+
+        # self.assertEqual(credentials.view_credentials(), credentials.credentials_list)    
+        self.assertEqual(credentials.view_credentials(), credentials.credentials_list)
          
 
          
