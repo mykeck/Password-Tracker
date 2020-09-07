@@ -43,11 +43,14 @@ def save_credentials(credentials):
 
 
 def find_credentials(account_name):
-    return Credential.find_by_account_name(account_name)
+    return Credential.find_account_name(account_name)
 
 
 def view_credentials():
     return Credential.view_credentials()
+
+def credentials_search(account):
+    return Credential.credentials_search(account)  
 
 
 def delete_credentials():
@@ -91,7 +94,7 @@ def main():
             login_detail = login(user_name, Password)
 
     while login_detail == True:
-        print("Use these short codes : sc - save  already existing credentials, cc - create a new credential, vc - view your credentials, fc - find a credential, del - delete credentials, lo - logout ")
+        print("Use these short codes : cc - create a new credential, vc - view your credentials, fc - find a credential, del - delete credentials, lo - logout ")
         code = input()
 
         if code == "cc":
@@ -136,43 +139,40 @@ def main():
         elif code == "fc":
             print("Enter the account credentials name you want to search for")
             name=input()
-            find_credentials=find_credentials(name)
+            found_credentials = find_credentials(name)
             if found_credentials:
                 print(f"your username for your {found_credentials.account_name} account is {found_credentials.user_name} and the password is {found_credentials.password}")
                 print("\n")
             else:
                 print("credentials does not exist")
 
+        
+
+        elif code == "del":
+
+            print("Enter account to delete")  
+            delete_credentials = input()
+            if credentials_search(delete_credentials):
+                print("/n")
+                print(f"Are you sure you want to delete {delete_credentials} Enter Y to accept and N to cancel")
+                confirm = input().lower()
+                if confirm == "y":
+                    to_delete = search_credentials(delete_credentials)
+                    to_delete.delete_credential()
+                    print(f"{delete_credentials} deleted successfuly")
+                elif confirm == "n":
+                    print("Delete action canceled")
+                    break
+                else:
+                    print("Use correct letter")
+            else:
+                print("Credential you wish to delete does not exist")  
+
+                
         elif code == "lo":
             print("loged out succesfully..")
-
-        # elif code == "del"
-
-        # print("Enter account to delete")  
-        # delete_credentials = input()
-        # if credentials_search(delete_credentials):
-        #     print("/n")
-        #     print(f"Are you sure you want to delete {delete_credentials} Enter Y to accept and N to cancel")
-        #     confirm = input().lower()
-        #     if confirm == "y":
-        #     to_delete = search_credentials(delete_credentials)
-        #     to_delete.delete_credential()
-        #     print(f"{delete_credentials} deleted successfuly")
-        #   elif confirm == "n":
-        #    print("Delete action canceled")
-        #    break
-        #   else:
-        #     print("Use correct letter")
-        # else:
-        #   print("Credential you wish to delete does not exist")  
-
-            
-
-
-            # break
-        else:
-            print("Use correct short codes")
-
+            break
+        
 
 if __name__ == "__main__":
     main()
