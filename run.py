@@ -48,9 +48,29 @@ def delete_credentials():
 
 def generate_password(pass_len):
 
-    return "".join(secrets.choice(string.ascii_letters+string.digits) for i in range(pass_len))            
+    return "".join(secrets.choice(string.ascii_letters+string.digits) for i in range(pass_len))  
+
+
+def main(): 
+    print("Hello! Welcome to password Checker")
+    logged_in = False
+
+    
+    while True:
+        print("Do you want to sign up or login")
+        print("Click 's' to sign up or 'l' to login")
+        answer = input()
+        if answer == "l":
+            print("Enter your password:")
+            password = input()
+
+            logged_in = login(user_name, password) if answer == 'l' else False
+
+            while logged_in:
+                print("Use these short codes : sc - save  already existing credentials")
+
                       
 
 
-if __name__ == "__main__":
-    main()    
+    if __name__ == "__main__":
+        main()    
