@@ -51,8 +51,8 @@ class TestCredential(unittest.TestCase):
     def tearDown(self):
         Credential.credentials_list = []
 
-    # def test_init(self):
-    #     self.assertSetEqual(self.new_credentials.account_name,"twitter")
+    # def test_init2(self):
+    #     self.assertSetEqual(self.new_credentials.account_name, "twitter")
     #     self.assertSetEqual(self.new_credentials.user_name, "mykeck")
     #     self.assertSetEqual(self.new_credentials.password, "key33")
 
@@ -83,11 +83,11 @@ class TestCredential(unittest.TestCase):
     
         self.assertEqual(Credential.view_credentials(), Credential.credentials_list)
 
-    # def test_delete_credentials(self):
-    #     self.new_credentials.save_credentials()
+    def test_delete_credentials(self):
+        self.new_credentials.save_credentials()
 
-    #     self.new_credentials.delete_credentials(
-    #     self.assertEqual(len(Credential.credentials_list), 0)    
+        self.new_credentials.delete_credentials()
+        self.assertEqual(len(Credential.credentials_list), 0)    
             
          
 if __name__ == '__main__':
