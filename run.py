@@ -67,7 +67,25 @@ def main():
             logged_in = login(user_name, password) if answer == 'l' else False
 
             while logged_in:
-                print("Use these short codes : sc - save  already existing credentials")
+                print("Use these short codes : sc - save  already existing credentials, cc - create a new credential, vc - view your credentials, fc - find a credential, lo - logout")
+                code =  input()
+
+                if code == "sc":
+                    print("Create new credentials")
+
+                    print("Enter the name of the account credential")
+                    account_name = input()
+
+                    print("Enter the account credential username")
+                    user_name = input()
+
+                    print("Enter the password of the account")
+                    password = input()
+
+                    save_credentials(create_credentials(account_name, user_name, password))
+
+                    print(f"Account credentials fo {account_name} has been saved")
+                    print("/n")
 
                       
 
