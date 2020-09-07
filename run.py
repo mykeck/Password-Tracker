@@ -87,8 +87,25 @@ def main():
                     print(f"Account credentials fo {account_name} has been saved")
                     print("/n")
 
+                elif code == "cc":
+                    print("Enter the name of the account credential")
+                    account_name = input() 
+
+                    print("Enter the account credential username")
+                    user_name = input() 
+
+                    print("password:") 
+                    print("Would you like to generate your password? y/n") 
+                    password = input()
+
+                    if password == "y":
+                        print("Enter preffered password length")
+                        pass_len = int(input())
+                        password = generate_password(pass_len)
+                        print(f"your new password for {account_name} is {password}")
+
                       
 
 
-    if __name__ == "__main__":
-        main()    
+if __name__ == "__main__":
+    main()    
