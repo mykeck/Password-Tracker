@@ -1,5 +1,5 @@
 #!/usr/bin/env python3.6
-from Password import User
+from Password import User,Credential
 import secrets
 import string
 
@@ -24,7 +24,7 @@ def login(user_name, Password):
     '''
     checks if a user exists with that number and returns a Boolean
     '''
-    return User.user_exists(user_name, password)
+    return User.user_exists(user_name, Password)
 
 
 def create_credentials(account_name, user_name, password):
@@ -64,10 +64,10 @@ def main():
 
     print("Sign up  to account")
     print("Enter username")
-    User_name = input()
+    user_name = input()
     print("Enter your password:")
-    password = input()
-    save_account(create_account(user_name, password))
+    Password = input()
+    save_account(create_account(user_name, Password))
     print("\n")
     print(f"{user_name} account created successfuly")
     print("\n")
@@ -91,14 +91,14 @@ def main():
             login_detail = login(user_name, Password)
 
     while login_detail == True:
-        print("Use these short codes : sc - save  already existing credentials, cc - create a new credential, vc - view your credentials, fc - find a credential, lo - logout")
+        print("Use these short codes : sc - save  already existing credentials, cc - create a new credential, vc - view your credentials, fc - find a credential, del - delete credentials, lo - logout ")
         code = input()
 
         if code == "cc":
             print("Enter the name of the account credential")
-            account_name = input()
+            s_account_name = input()
             print("Enter the account credential username")
-            user_name = input()
+            s_user_name = input()
             print("password:")
             print("Would you like to generate your password? y/n")
             password = input()
@@ -106,16 +106,18 @@ def main():
                 print("Enter preffered password length")
                 pass_len=int(input())
                 password=generate_password(pass_len)
-                print(f"your new password for {account_name} is {password}")
+                print(f"your new password for {s_account_name} is {password}")
+
+                save_credentials(create_credentials(s_account_name, s_user_name, password))
+                print(f"Account credentials for {s_account_name} has been saved")
+                print("\n")
             elif password == "n":
                 print("Create your own password:")
                 password=input()
             else:
                 print("Invalid choice!")
 
-        save_credentials(create_credentials(account_name, user_name, password))
-        print(f"Account credentials for {account_name} has been saved")
-        print("\n")
+       
 
         elif code == "vc":
             if view_credentials():
@@ -134,7 +136,7 @@ def main():
         elif code == "fc":
             print("Enter the account credentials name you want to search for")
             name=input()
-            found_credentials=find_credentials(name)
+            find_credentials=find_credentials(name)
             if found_credentials:
                 print(f"your username for your {found_credentials.account_name} account is {found_credentials.user_name} and the password is {found_credentials.password}")
                 print("\n")
@@ -142,7 +144,27 @@ def main():
                 print("credentials does not exist")
 
         elif code == "lo":
-            print("logging out..")
+            print("loged out succesfully..")
+
+        # elif code == "del"
+
+        # print("Enter account to delete")  
+        # delete_credentials = input()
+        # if credentials_search(delete_credentials):
+        #     print("/n")
+        #     print(f"Are you sure you want to delete {delete_credentials} Enter Y to accept and N to cancel")
+        #     confirm = input().lower()
+        #     if confirm == "y":
+        #     to_delete = search_credentials(delete_credentials)
+        #     to_delete.delete_credential()
+        #     print(f"{delete_credentials} deleted successfuly")
+        #   elif confirm == "n":
+        #    print("Delete action canceled")
+        #    break
+        #   else:
+        #     print("Use correct letter")
+        # else:
+        #   print("Credential you wish to delete does not exist")  
 
             
 
