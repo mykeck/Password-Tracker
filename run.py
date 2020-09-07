@@ -1,5 +1,7 @@
 #!/usr/bin/env python3.6
 from Password import User
+import secrets
+import string
 
 
 def create_account(user_name, Password):
@@ -44,7 +46,9 @@ def view_credentials():
 def delete_credentials():
     return Credential.delete_credential()
 
-def generate_password(pass_len):            
+def generate_password(pass_len):
+
+    return "".join(secrets.choice(string.ascii_letters+string.digits) for i in range(pass_len))            
                       
 
 
