@@ -85,7 +85,7 @@ def main():
                     save_credentials(create_credentials(account_name, user_name, password))
 
                     print(f"Account credentials fo {account_name} has been saved")
-                    print("/n")
+                    print("\n")
 
                 elif code == "cc":
                     print("Enter the name of the account credential")
@@ -104,8 +104,74 @@ def main():
                         password = generate_password(pass_len)
                         print(f"your new password for {account_name} is {password}")
 
-                      
+                    elif password == "n":
+                        print("Create your own password:")
+                        password = input()
 
+                    else:
+                        print("Invalid choice!")
+                    
+
+                        save_credentials(create_credentials(account_name, user_name, password))
+
+                        print(f"Account credentials for {account_name} has been saved") 
+                        print("\n")
+
+                    elif code == "vc":
+                        if view_credentials():
+                            print("Here is a list of all your credentials")
+                            print("\n")
+
+                            for credentials in view_credentials():
+                                print(f"Account Name .....{credentials.account_name}")
+                                print(f"User Name .....{credentials.user_name}") 
+                                print(f"Password .....{credentials.password}")
+                                print("\n")
+
+                        else:
+                            print("\n") 
+                            print("you dont seem to have any credentials saved yet") 
+                            print("\n") 
+
+                    elif code == "fc": 
+                        print("Enter the account credentials name you want to search for")
+
+                        name= input()
+                        found_credentials = find_credentials(name)
+                        if found_credentials:
+                            print(f"your username for your {found_credentials.account_name} account is {found_credentials.user_name} and the password is {found_credentials.password}") 
+                            print("\n") 
+
+                        else:
+                            print("credentials does not exist")  
+
+                    elif code == "lo":
+                        print("logging out..")
+                        exit()
+
+                        else: print("Wrong username or password. Try again")
+                        print("\n")
+
+                    elif answer =="s":
+                        print("Create new account")
+
+                        print("Username:") 
+                        user_name = input() 
+
+                        if user_name:
+                            print("Password:")
+                            password = input()
+
+                            save_account(create_account(user_name, password)) 
+                            print(f"Account for {user_name} has been created") 
+                            print ("/n")
+
+                        else:
+                            print("Invalid username")
+
+                    else:
+                        print("Invalid choice!!")            
+                      
 
 if __name__ == "__main__":
     main()    
